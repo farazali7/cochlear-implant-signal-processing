@@ -3,7 +3,7 @@ clear all
 close all
 
 % Read all the sound files in directory
-sound_files = dir('sound_files/*.wav');
+sound_files = dir('original_sounds/*.wav');
 for index=1:length(sound_files)
     audio_file = fullfile(sound_files(index).folder, sound_files(index).name);
     read_and_resample(audio_file)
