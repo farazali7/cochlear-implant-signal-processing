@@ -1,3 +1,5 @@
+% [10] H. Traunmüller, “Analytical expressions for the tonotopic sensory scale,” The Journal of the Acoustical Society of America, vol. 88, no. 1, pp. 97–100, 1990. 
+
 function [hertz] = bark_scale_to_hertz(barks)
     hertz = [];
     for num = 1 : length(barks)

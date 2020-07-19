@@ -26,7 +26,7 @@ for index=1:length(sound_files)
     [~, name, ext] = fileparts(audio_file);
     
     % Create channels for sound by filtering (use filtfilt to get minimum
-    % phase digital filterning)
+    % phase digital filtering)
     filtered_channels = cell(length(filters), 1);
     for filter_num = 1 : length(filters)
         current_filter = filters{filter_num, 1};
