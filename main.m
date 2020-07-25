@@ -161,14 +161,14 @@ for index=1:length(sound_files)
     sound(output_signal_normalized, sampling_rate)
     pause(audio_length/sampling_rate)
     
-%     % Write sound to new file
-%     output_sound_files_dir = "output_sound_files";
-%     if ~exist(output_sound_files_dir, 'dir')
-%         mkdir(output_sound_files_dir)
-%     end
-%         
-%     filename = "output_sound_files/output_" + name + ".wav";
-%     audiowrite(filename, output_signal_normalized, sampling_rate);
+    % Write sound to new file
+    output_sound_files_dir = "output_sound_files";
+    if ~exist(output_sound_files_dir, 'dir')
+        mkdir(output_sound_files_dir)
+    end
+        
+    filename = "output_sound_files/output_" + name + ".wav";
+    audiowrite(filename, output_signal_normalized, sampling_rate);
 
 end
 
