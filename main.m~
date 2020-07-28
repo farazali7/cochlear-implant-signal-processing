@@ -34,7 +34,7 @@ frequency_bands{num_of_channels+1} = last_band;
 [filters] = generate_bandpass_filters(frequency_bands, sampling_rate, 6);
 
 % Read all the sound files in directory
-sound_files = dir('original_sounds/*.wav');
+sound_files = dir('original_sounds/');
 for index=1:length(sound_files)
     audio_file = fullfile(sound_files(index).folder, sound_files(index).name);
     resampled_audio = read_and_resample(audio_file);
@@ -168,9 +168,9 @@ for index=1:length(sound_files)
     % Normalize output signal
     output_signal_normalized = output_signal / max(abs(output_signal));
     
-%     % Play output signal
-%     sound(output_signal_normalized, sampling_rate)
-%     pause(audio_length/sampling_rate)
+    % Play output signal
+    sound(output_signal_normalized, sampling_rate)
+    pause(audio_length/sampling_rate)
     
     % Write sound to new file
     output_sound_files_dir = "prototype2_output_sound_files";
@@ -178,7 +178,7 @@ for index=1:length(sound_files)
         mkdir(output_sound_files_dir)
     end
         
-    filename = "prototype2_output_sound_files/output_" + name + ".wav";
+    filename = "output_sound_files/output_" + name + ".wav";
     audiowrite(filename, output_signal_normalized, sampling_rate);
 
 end
