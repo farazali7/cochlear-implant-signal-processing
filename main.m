@@ -5,7 +5,7 @@ close all
 sampling_rate = 16000;
 num_of_channels = 22; % Creates 22 channels with adjustment
 
-% 1st Prototype - Generate bark scale domain frequency bands
+% Generate bark scale domain frequency bands
 b = hertz_to_bark_scale([100, 8000-0.0001]);
 bark_vector = linspace(b(1), b(2), num_of_channels+1);
 hertz_vector = bark_scale_to_hertz(bark_vector);
@@ -85,7 +85,7 @@ for index=1:length(sound_files)
         rectified_signals{channel_num, 1} = rectified_signal;
         
         % Low-pass filter the signals
-        [zeroes, poles, gain] = cheby2(6, 20, 300/(sampling_rate/2));
+        [zeroes, poles, gain] = cheby2(6, 20, 400/(sampling_rate/2));
         [sos, gain] = zp2sos(zeroes, poles, gain);
         envelope = filtfilt(sos, gain, rectified_signal);
         envelopes{channel_num, 1} = envelope;
@@ -158,16 +158,7 @@ for index=1:length(sound_files)
     
     % Normalize output signal
     output_signal_normalized = output_signal / max(abs(output_signal));
-    
-    samples_vector = (1:audio_length);
-    freq_magnitude = abs(fft(output_signal_normalized));
-    bins = (0 : audio_length-1);
-    fax_hz = bins*(sampling_rate/audio_length);
-    half_way = ceil(audio_length/2);
-    plot(fax_hz(1:half_way), freq_magnitude(1:half_way))
-    xlabel("Frequency (Hz)")
-    ylabel("Magnitude")
-    
+     
     % Play output signal
 %     sound(output_signal_normalized, sampling_rate)
 %     pause(audio_length/sampling_rate)
